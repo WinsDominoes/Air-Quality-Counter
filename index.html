@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+
+		<link rel="stylesheet" href="odometer-theme-default.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+		<title>Air Quality Counter</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="HandheldFriendly" content="true">
+		<!-- Primary Meta Tags -->
+<title>Air Quality Counter</title>
+<meta name="title" content="Air Quality Country">
+<meta name="description" content="Air Quality Counter shows the air quality of the city. This website is based on the AirVisual API. ">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="http://livecounts.winsdominoes.com/air-quality-thailand/">
+<meta property="og:title" content="Air Quality Country">
+<meta property="og:description" content="Air Quality Counter shows the air quality of the city. This website is based on the AirVisual API. ">
+<meta property="og:image" content="">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="http://livecounts.winsdominoes.com/air-quality-thailand/">
+<meta property="twitter:title" content="Air Quality Country">
+<meta property="twitter:description" content="Air Quality Counter shows the air quality of the city. This website is based on the AirVisual API. ">
+<meta property="twitter:image" content="">
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+ <link rel="stylesheet" href="odometer-theme-default.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.8/odometer.min.js"></script>
+  </head>
+	<body>
+		<style>
+
+			@import url('https://fonts.googleapis.com/css?family=Roboto:300&display=swap');
+		#usaqi {
+			font-family: 'Roboto', sans-serif;
+			font-size: calc(7vw);
+			font-weight: 300;
+			color: black;
+		}
+
+		.odometer {
+			font-family: 'Roboto', sans-serif;
+			font-weight: 300;
+			color: black;
+		}
+
+		.weather {
+			font-family: 'Roboto', sans-serif;
+			font-weight: 300;
+			color: black;
+		}
+
+
+		h1, h4, p, hr{
+			color: black;
+		 }
+
+.top {
+	margin-top: 0px;
+	background-color:; #3f0d12;
+	background-image: linear-gradient(315deg, #5AFF15 0%, #00B712 74%);
+	padding: 5px;
+}
+
+.column {
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    margin-top: 85px;
+    overflow: hidden;
+		margin-left: 28px; /* Same as the width of the sidenav */
+  	font-size: 28px; /* Increased text to enable scrolling */
+  	padding-top: 10px 5px;
+  	border: 1px solid rgba(0,0,0,.125);
+}
+
+.logo {
+	width: 128px;
+	height: 64px;
+}
+
+.form-child {
+  float: left;
+}
+
+
+.inputFields {
+  margin-right: 25%;
+}
+
+
+.about-section {
+  font-size: 18px;
+}
+
+th {
+	font-size: 16px;
+}
+
+td {
+	font-size: 2vw;
+}
+
+		</style>
+		<nav class="top fixed-top" align="center">
+			<h1>Air Quality Counter</h1>
+		</nav>
+
+		<div class="column">
+      <span>City: <span id="city-text"></span> State/Province: <span id="state-text"></span> Country: <span id="country-text"></span></span><br>
+			<div class="usaqi-container">
+	      <h3>Air Pollution in US AQI</h3>
+	      	<p id="usaqi" class="odometer">0</p>
+			</div>
+
+			<div class="weather">
+					<h3>Weather</h3>
+					<table class="table">
+					  <thead>
+					    <tr>
+					      <th scope="col">Time (Fetched since)</th>
+					      <th scope="col">Temperature in Celcius</th>
+					      <th scope="col">Atmospheric pressure in hPa</th>
+								<th scope="col">Humidity in %</th>
+								<th scope="col">Wind Speed (miles/second)</th>
+								<th scope="col">Wind Direction, as an angle of 360°</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr>
+					      <td><p id="ts" class="weather">0</p></td>
+					      <td><p id="tp" class="odometer">0</p></td>
+					      <td><p id="pr" class="odometer">0</p></td>
+								<td><p id="hu" class="odometer">0</p></td>
+								<td><p id="ws" class="odometer">0</p></td>
+								<td><p id="wd" class="odometer">0</p></td>
+					    </tr>
+					  </tbody>
+					</table>
+			</div>
+
+      <hr>
+
+      <div class="inputFields col-sm-4 col-sm-offset-4 form-child">
+        <h3>Input</h3>
+        <input type="text" placeholder="Enter City" id="city" class="form-control">
+
+        <input type="text" placeholder="Enter State/Province" id="state" class="form-control">
+
+        <input type="text" placeholder="Enter Country" id="country" class="form-control">
+
+          <span class="input-group-btn">
+              <button type="button" onclick="fetchAll();" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Search</button>
+          </span>
+        </div>
+
+      <div class="recommended form-child">
+        <h3>About</h3>
+        <span class="about-section">Website created by: <a href="https://twitter.com/WinsDominoes">@WinsDominoes</a>
+
+        <br>API / Data provided by: <a href="https://www.iqair.com/">IQAir / AirVisual</a>
+
+				<br>Info: (N=0, E=90, S=180, W=270)</span>
+      </div>
+
+    <script>
+    init();
+      function init() {
+          fetchAQI()
+          setInterval(fetchAQI, 10000);
+        }
+
+        function fetchAll() {
+          let inputCity = document.getElementById("city").value;
+          let inputState = document.getElementById("state").value;
+          let inputCountry = document.getElementById("country").value;
+
+          window.location.href = "index.html?city="+inputCity+"&state="+inputState+"&country="+inputCountry+"";
+        }
+
+        function fetchAQI() {
+
+          const queryString = window.location.search;
+          const urlParams = new URLSearchParams(queryString);
+          // declare some variables
+          const city = urlParams.get('city');
+          const state = urlParams.get('state');
+          const country = urlParams.get('country');
+
+          			//apikey for airvisual api
+					var apikey = "";
+
+          document.getElementById('city-text').innerHTML = city;
+          document.getElementById('state-text').innerHTML = state;
+          document.getElementById('country-text').innerHTML = country;
+
+          $.getJSON('http://api.airvisual.com/v2/city?city='+city+'&state='+state+'&country='+country+'&key='+apikey+'', function(data) {
+              var aqius = data["data"]["current"]["pollution"]["aqius"];
+							var tp = data["data"]["current"]["weather"]["tp"];
+							var ts = data["data"]["current"]["weather"]["ts"];
+							var pr = data["data"]["current"]["weather"]["pr"];
+							var hu = data["data"]["current"]["weather"]["hu"];
+							var ws = data["data"]["current"]["weather"]["ws"];
+							var wd = data["data"]["current"]["weather"]["wd"];
+							var ic = data["data"]["current"]["weather"]["ic"];
+
+							const timeTs = new Date(ts);
+
+							document.getElementById('tp').innerHTML = tp;
+							document.getElementById('ts').innerHTML = timeTs;
+							document.getElementById('pr').innerHTML = pr;
+							document.getElementById('hu').innerHTML = hu;
+							document.getElementById('ws').innerHTML = ws;
+							document.getElementById('wd').innerHTML = aqius;
+
+              if (aqius < 51) {
+                document.getElementById("usaqi").style.color = "#009966";
+              }
+
+              if (aqius > 50) {
+                document.getElementById("usaqi").style.color = "#ffde33";
+              }
+
+              if (aqius > 100) {
+                document.getElementById("usaqi").style.color = "#ff9933";
+              }
+
+              if (aqius > 150) {
+                document.getElementById("usaqi").style.color = "#cc0033";
+              }
+
+              if (aqius > 200) {
+                document.getElementById("usaqi").style.color = "#660099";
+              }
+
+              if (aqius > 300) {
+                document.getElementById("usaqi").style.color = "#7e0023";
+              }
+
+              if (aqius > 400) {
+                document.getElementById("usaqi").style.color = "#7e0023";
+              }
+
+              if (aqius > 500) {
+                document.getElementById("usaqi").style.color = "#7e0023";
+              }
+
+              document.getElementById('usaqi').innerHTML = aqius;
+          });
+        }
+
+    </script>
+	</body>
+</html>
