@@ -1,7 +1,7 @@
 # Air-Quality-Counter
 A real-time air quality counter based on https://www.iqair.com/'s API, updates every 10 seconds, with odometer animation.
 
-Currently being used on https://livecounts.winsdominoes.com/air-quality.
+Currently being used on http://livecounts.winsdominoes.com/air-quality. Coded in Javascript
 
 ## About
 
@@ -9,7 +9,7 @@ This project was originally created to test the AirVisual (IQAIR) API with real-
 
 ### How do I use this?
 
-Go to https://livecounts.winsdominoes.com/air-quality and then type the city, the state and the country name in the Input section of the page then click submit, you will see the odometer numbers counting up and down updating every 10 seconds.
+Go to http://livecounts.winsdominoes.com/air-quality and then type the city, the state and the country name in the Input section of the page then click submit, you will see the odometer numbers counting up and down updating every 10 seconds.
 
 ### How do I install this?
 
